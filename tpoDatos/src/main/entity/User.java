@@ -7,12 +7,13 @@ import lombok.Generated;
 @Data
 @Entity
 //Se podria hacer en MongoDB o Cassandra
+@Document(collection = "Usuarios")
 public class User {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
     private String name;
     private String surname;
