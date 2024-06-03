@@ -20,8 +20,8 @@ public class UserController {
     
     
     @GetMapping("/login")
-    public String getMethodName(@RequestParam Login login) {
-        return new String();
+    public ResponseEntity<String> loguearUsuario(@RequestParam Login login) {
+        return userService.loguearUsuario(login);
     }
     
 
