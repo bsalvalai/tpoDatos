@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.Generated;
 
 @Data
-@Entity
 //Se podria hacer en MongoDB o Cassandra
 @Document(collection = "Usuarios")
 public class User {
@@ -20,7 +19,17 @@ public class User {
     private int dni;
     private String category;
 
-    
+    /*public User(){
+
+    }*/
+
+    /*public User(String name, String email, int dni){
+        this.name = name;
+        this.email = email;
+        this.dni = dni;
+        this.category = "LOW";
+    }*/
+
 
 
 }

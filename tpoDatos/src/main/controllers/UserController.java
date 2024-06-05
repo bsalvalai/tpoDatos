@@ -1,10 +1,6 @@
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -15,14 +11,13 @@ public class UserController {
 
     @PostMapping("/create")
     public ResponseEntity<String> createUser(@RequestBody User user) {
+    System.out.print("Crear");
        return userService.crearUsuario(user);
     }
-    
-    
+
     @GetMapping("/login")
-    public ResponseEntity<String> loguearUsuario(@RequestParam Login login) {
+    public ResponseEntity<String> loguearUsuario(@RequestBody Login login) {
+        System.out.print("Loguear");
         return userService.loguearUsuario(login);
     }
-    
-
 }
