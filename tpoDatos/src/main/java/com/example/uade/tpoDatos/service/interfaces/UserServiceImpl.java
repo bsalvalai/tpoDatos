@@ -1,5 +1,9 @@
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+package com.example.uade.tpoDatos.service.interfaces;
+
 import org.springframework.http.ResponseEntity;
+
+import com.example.uade.tpoDatos.entity.Login;
+import com.example.uade.tpoDatos.entity.User;
 
 public interface UserServiceImpl {
 
