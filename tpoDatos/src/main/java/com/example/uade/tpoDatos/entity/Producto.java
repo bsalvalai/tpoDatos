@@ -2,26 +2,28 @@ package com.example.uade.tpoDatos.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.cassandra.core.mapping.Column;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
 import lombok.Data;
 
 @Data
-@Table()
+@Table("productos")
 public class Producto {
     
-    @Id
+    //@Id
+    @PrimaryKey
     private Long id;
 
-    @Column()
+    @Column("nombre")
     private String nombre;
 
-    @Column()
+    @Column("categoria")
     private String categoria;
     
-    @Column()
+    @Column("precio")
     private double precio;
 
-    @Column()
+    @Column("imagen")
     private String imagen;
 }

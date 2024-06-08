@@ -15,18 +15,12 @@ public class User {
 
     private String nombre;
     private String email;
+    private String password;
     private String dni;
-    private String tipo;
+    private String tipo = "LOW";
 
     public User(){
 
-    }
-    public User(Long id, String nombre, String email, String dni){
-        this.id = id;
-        this.nombre = nombre;
-        this.email = email;
-        this.dni = dni;
-        this.tipo = "LOW";
     }
 
 }
