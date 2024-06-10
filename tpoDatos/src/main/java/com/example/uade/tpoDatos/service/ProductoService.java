@@ -21,10 +21,6 @@ public class ProductoService implements ProductoServiceImpl{
 
     @Autowired
     private ProductoRepository productoRepository;
-
-    @Autowired
-    private CqlSession cqlSession;
-
    
     public ResponseEntity<String> crearProducto(Producto prod) {
         
@@ -42,13 +38,15 @@ public class ProductoService implements ProductoServiceImpl{
     }
     
     public ResponseEntity<String> getProducto(String nombre) {
-        List<Producto> productos = productoRepository.findAll();
-        for(Producto p : productos){
-            if(p.getNombre() == nombre){
+        for(Producto p : productoRepository.findAll()){
+            /*System.out.println(p.getNombre());
+            System.out.println(nombre.equals(p.getNombre()));
+            System.out.println(p.getNombre() == nombre);*/
+            if(nombre.equals(p.getNombre())){
                 return new ResponseEntity<String>("Producto encontrado", HttpStatus.FOUND);
             }
         }
-        return new ResponseEntity<String>("Error al encontrar producto", HttpStatus.NOT_FOUND);
+        return new ResponseEntity<String>("Producto no encontrado", HttpStatus.NOT_FOUND);
     }
 
     

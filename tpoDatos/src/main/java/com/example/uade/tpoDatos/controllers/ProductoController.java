@@ -27,7 +27,7 @@ public class ProductoController {
     }
     
     @GetMapping("/get")
-    public ResponseEntity<String> getMethodName(@RequestBody String nombre) {
+    public ResponseEntity<String> getMethodName(@RequestParam String nombre) {
         return productoService.getProducto(nombre);
     }
     

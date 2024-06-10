@@ -1,0 +1,10 @@
+package com.example.uade.tpoDatos.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+public class Carrito {
+    
+}
