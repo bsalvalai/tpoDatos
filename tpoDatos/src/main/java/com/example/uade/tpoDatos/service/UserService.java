@@ -2,7 +2,7 @@ package com.example.uade.tpoDatos.service;
 
 import java.util.List;
 
-
+import org.slf4j.helpers.Reporter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -45,13 +45,19 @@ public class UserService implements UserServiceImpl{
     public ResponseEntity<String> loguearUsuario(Login login) {
         List<User> users = userRepository.findAll();
         for(User user : users){
-            if (user.getNombre().equals(login.getNombre()) && user.getDni().equals(login.getDni())){
-                System.out.println("TODO BIEN");
+            if (user.getEmail().equals(login.getEmail()) && user.getPassword().equals(login.getPassword())){
+                //System.out.println("TODO BIEN");
                 return ResponseEntity.ok("Usuario autenticado correctamente");
+                //HAY QUE AGREGAR QUE EL REDIS EMPIECE A CONTAR EL TIEMPO DE CONEXION
             }
         }
         //System.out.println("TODO MAL");
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
+    }
+
+    public ResponseEntity<String> signOut(Login login){
+        return new ResponseEntity<String>("Usuario deslogueado", HttpStatus.ACCEPTED);
+        //HACER TODO EL MECANISMO DE REDIS
     }
 
 }
