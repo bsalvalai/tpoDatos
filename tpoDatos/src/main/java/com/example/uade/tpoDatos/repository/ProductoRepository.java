@@ -5,7 +5,7 @@ import org.springframework.data.cassandra.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.example.uade.tpoDatos.entity.Producto;
-import java.util.List;
+
 
 @Repository
 public interface ProductoRepository extends CassandraRepository<Producto,Long>{

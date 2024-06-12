@@ -23,12 +23,13 @@ public class CarritoService implements CarritoServiceImpl{
     @Autowired
     private ProductoRepository productoRepository;
 
+    @SuppressWarnings("null")
     @Override
     public ResponseEntity<String> agregarACarrito(CarritoUsuario carritoUsuario) {
         
         Carrito carritoExistente = carritoRepository.findByNombreProducto(carritoUsuario.getProducto());
         
-        if(carritoExistente == null){
+        if(carritoExistente == null && productoRepository.findByNombre(carritoUsuario.getProducto()) != null){
             try {
                 Carrito carritoNuevo = new Carrito();
                 carritoNuevo.setId(carritoUsuario.getId());
@@ -42,7 +43,7 @@ public class CarritoService implements CarritoServiceImpl{
             }
         }
         else{
-            if(productoRepository.findByNombre(carritoExistente.getProducto()) != null){
+            if(productoRepository.findByNombre(carritoUsuario.getProducto()) != null){
                 try {
                     carritoExistente.setCantidad(carritoExistente.getCantidad() + carritoUsuario.getCantidad());
                     carritoRepository.save(carritoExistente);
@@ -52,7 +53,7 @@ public class CarritoService implements CarritoServiceImpl{
                 }
             }
             else{
-                return new ResponseEntity<String>("El producto no existe", HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<String>("El producto ingresado no existe", HttpStatus.BAD_REQUEST);
             }
         }
     }
@@ -75,7 +76,8 @@ public class CarritoService implements CarritoServiceImpl{
 
     @Override
     public List<Carrito> getProductosCarrito() {
-        return carritoRepository.findAll();
+        List<Carrito> carritoUsuario = carritoRepository.findAllByNombreUsuario(UserController.getUsuarioActivo().getNombre());
+        return carritoUsuario;
     }
     
 }

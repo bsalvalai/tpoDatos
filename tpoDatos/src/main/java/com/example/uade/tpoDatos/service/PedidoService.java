@@ -42,10 +42,14 @@ public class PedidoService implements PedidoServiceImpl {
             List<Carrito> carritoUsuario = carritoRepository.findAll();
             double total = 0f;
             for(Carrito c: carritoUsuario){
-                int cant = c.getCantidad();
-                Producto producto = productoRepository.findByNombre(c.getProducto());
-                total = total + (cant * producto.getPrecio());
+                if(usuario.getNombre().equals(c.getNombreUsuario())){
+                    int cant = c.getCantidad();
+                    Producto producto = productoRepository.findByNombre(c.getProducto());
+                    total = total + (cant * producto.getPrecio());
+                    carritoRepository.delete(c);
+                }
             }
+            pedido.setDireccion(usuario.getDireccion());
             pedido.setTotal(total);
             try {
                 pedidoRepository.save(pedido);

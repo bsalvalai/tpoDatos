@@ -2,7 +2,7 @@ package com.example.uade.tpoDatos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.data.redis.RedisProperties.Jedis;
+
 
 
 @SpringBootApplication

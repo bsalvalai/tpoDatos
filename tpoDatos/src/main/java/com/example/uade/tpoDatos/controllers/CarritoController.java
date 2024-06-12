@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.uade.tpoDatos.entity.Carrito;
 import com.example.uade.tpoDatos.entity.CarritoUsuario;
 import com.example.uade.tpoDatos.service.CarritoService;
-import com.typesafe.config.ConfigException.Null;
-
-import io.micrometer.core.ipc.http.HttpSender.Response;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,9 +43,10 @@ public class CarritoController {
         return new ResponseEntity<>("Necesita loguearse para poder eliminar productos del carrito!", HttpStatus.BAD_REQUEST);
     }
     
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     @GetMapping("/getCarrito")
-    public List<Carrito> getProductosCarrito() {
-        return carritoService.getProductosCarrito();
+    public ResponseEntity<List<Carrito>> getProductosCarrito() {
+        return new ResponseEntity(carritoService.getProductosCarrito(), HttpStatus.OK);
     }
     
 }

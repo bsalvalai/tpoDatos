@@ -1,6 +1,9 @@
 package com.example.uade.tpoDatos.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.uade.tpoDatos.entity.Producto;
 import com.example.uade.tpoDatos.service.ProductoService;
-
 
 
 @Controller
@@ -31,9 +33,10 @@ public class ProductoController {
         return productoService.getProducto(nombre);
     }
     
-    @GetMapping("/{id}")
-    public String getProductoById(@RequestParam int id) {
-        return new String();
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @GetMapping("/getProductos")
+    public ResponseEntity<List<Producto>> getProductos() {
+        return new ResponseEntity(productoService.getProductos(), HttpStatus.OK);
     }
     
     

@@ -6,15 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.datastax.oss.driver.api.core.CqlSession;
 import com.example.uade.tpoDatos.entity.Producto;
 import com.example.uade.tpoDatos.repository.ProductoRepository;
 import com.example.uade.tpoDatos.service.interfaces.ProductoServiceImpl;
+
 
 @Service
 public class ProductoService implements ProductoServiceImpl{
@@ -47,6 +43,12 @@ public class ProductoService implements ProductoServiceImpl{
             }
         }
         return new ResponseEntity<String>("Producto no encontrado", HttpStatus.NOT_FOUND);
+    }
+
+    
+    @Override
+    public List<Producto> getProductos() {
+        return productoRepository.findAll();
     }
 
     
