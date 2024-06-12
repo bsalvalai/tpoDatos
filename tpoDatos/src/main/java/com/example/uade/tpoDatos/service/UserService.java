@@ -49,6 +49,7 @@ public class UserService implements UserServiceImpl{
                 //System.out.println("TODO BIEN");
                 return ResponseEntity.ok("Usuario autenticado correctamente");
                 //HAY QUE AGREGAR QUE EL REDIS EMPIECE A CONTAR EL TIEMPO DE CONEXION
+                //Se podria usar una variable booleana para que no se puedan loguear varios usuarios
             }
         }
         //System.out.println("TODO MAL");

@@ -1,22 +1,22 @@
 package com.example.uade.tpoDatos.entity;
 
-import java.io.Serializable;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.cassandra.core.mapping.Column;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.Table;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@RedisHash("carrito")
-public class Carrito implements Serializable{
+@Table("carrito")
+public class Carrito {
     
-    @Id
-    private int id;
+    @PrimaryKey
+    private Long id;
+
+    @Column("producto")
+    private String producto;
+
+    @Column("cantidad")
     private int cantidad;
-    private String nombreProducto;
 }

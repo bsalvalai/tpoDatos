@@ -19,8 +19,4 @@ public class User {
     private String dni;
     private String tipo = "LOW";
 
-    public User(){
-
-    }
-
 }
