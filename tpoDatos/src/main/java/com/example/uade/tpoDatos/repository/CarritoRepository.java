@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface CarritoRepository extends CassandraRepository<Carrito, Long>{
     
-    @Query("SELECT * FROM productos WHERE nombre=?0 ALLOW FILTERING")
+    @Query("SELECT * FROM carrito WHERE producto=?0 ALLOW FILTERING")
     Carrito findByNombreProducto(String nombreProducto);
 }

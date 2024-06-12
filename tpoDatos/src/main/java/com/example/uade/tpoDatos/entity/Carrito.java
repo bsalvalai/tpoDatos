@@ -19,4 +19,7 @@ public class Carrito {
 
     @Column("cantidad")
     private int cantidad;
+
+    @Column("nombre_usuario")
+    private String nombreUsuario;
 }

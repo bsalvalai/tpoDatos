@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.example.uade.tpoDatos.controllers.UserController;
 import com.example.uade.tpoDatos.entity.Login;
 import com.example.uade.tpoDatos.entity.User;
 import com.example.uade.tpoDatos.repository.UserRepository;
@@ -22,6 +23,7 @@ public class UserService implements UserServiceImpl{
     @Autowired
     private UserRepository userRepository;
 
+
     @Override
     public ResponseEntity<String> crearUsuario(User user) {
         if (userRepository.findByNombre(user.getNombre())!=null) {
@@ -30,10 +32,8 @@ public class UserService implements UserServiceImpl{
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("mailError");
         }else {
             try {
-
                 userRepository.save(user);
-
-
+                
                 return ResponseEntity.ok("ok");
             } catch (Exception e) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error");
@@ -46,10 +46,8 @@ public class UserService implements UserServiceImpl{
         List<User> users = userRepository.findAll();
         for(User user : users){
             if (user.getEmail().equals(login.getEmail()) && user.getPassword().equals(login.getPassword())){
-                //System.out.println("TODO BIEN");
+                UserController.setUsuarioActivo(user);
                 return ResponseEntity.ok("Usuario autenticado correctamente");
-                //HAY QUE AGREGAR QUE EL REDIS EMPIECE A CONTAR EL TIEMPO DE CONEXION
-                //Se podria usar una variable booleana para que no se puedan loguear varios usuarios
             }
         }
         //System.out.println("TODO MAL");
